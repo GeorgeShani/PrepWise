@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function InterviewCard({
-  interviewId,
+  id,
   // userId,
   role,
   type,
@@ -72,8 +72,8 @@ export default function InterviewCard({
             <Link
               href={
                 feedback
-                  ? `/interview/${interviewId}/feedback`
-                  : `/interview/${interviewId}`
+                  ? `/interview/${id}/feedback`
+                  : `/interview/${id}`
               }
             >
               {feedback ? "Check Feedback" : "View Interview"}
