@@ -6,7 +6,7 @@ import Image from "next/image";
 import Agent from "@/components/Agent";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 
-export default async function page({ params }: RouteParams) {
+export default async function InterviewDetailsPage({ params }: RouteParams) {
   const { id } = await params;
 
   const user = await getCurrentUser();
@@ -35,7 +35,7 @@ export default async function page({ params }: RouteParams) {
         </p>
       </div>
       <Agent
-        userName={String(user?.name)}
+        userName={user?.name || ''}
         userId={user?.id}
         interviewId={id}
         type="interview"

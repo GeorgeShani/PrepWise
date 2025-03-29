@@ -4,16 +4,24 @@ import DisplayTechIcons from "./DisplayTechIcons";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
-export default function InterviewCard({
-  id,
-  // userId,
+export default async function InterviewCard({
+  id: interviewId,
+  userId,
   role,
   type,
   techstack,
   createdAt,
 }: InterviewCardProps) {
-  const feedback = null as Feedback | null;
+  const feedback =
+    userId && interviewId
+      ? await getFeedbackByInterviewId({
+          interviewId,
+          userId,
+        })
+      : null;
+  
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
   const badgeColor =
     {
@@ -72,8 +80,8 @@ export default function InterviewCard({
             <Link
               href={
                 feedback
-                  ? `/interview/${id}/feedback`
-                  : `/interview/${id}`
+                  ? `/interview/${interviewId}/feedback`
+                  : `/interview/${interviewId}`
               }
             >
               {feedback ? "Check Feedback" : "View Interview"}

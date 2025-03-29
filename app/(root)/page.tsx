@@ -8,7 +8,7 @@ import InterviewCard from "@/components/InterviewCard";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Page() {
+export default async function HomePage() {
   const user = await getCurrentUser();
   const userId = String(user?.id);
 
